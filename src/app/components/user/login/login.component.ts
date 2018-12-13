@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { User } from "src/app/models/user.model.client";
+import { SharedService } from "src/app/services/shared.service.client";
 
 @Component({
   selector: "app-login",
@@ -11,7 +12,11 @@ import { User } from "src/app/models/user.model.client";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  constructor(private userservice: UserService, private router: Router) {}
+  constructor(
+    private userservice: UserService,
+    private router: Router,
+    private sharedservice: SharedService
+  ) {}
   error_flag = false;
   username = "";
   password = "";
@@ -19,7 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.error_flag = false;
   }
-  login() {
+  /*login() {
     this.userservice
       .findUserByCredentials(this.username, this.password)
       .subscribe(
@@ -35,5 +40,20 @@ export class LoginComponent implements OnInit {
           this.error_flag = true;
         }
       );
+  }
+*/
+  login() {
+    // calling client side userservice to send login information
+    console.log("data", this.password);
+    this.userservice.login(this.username, this.password).subscribe(
+      (data: any) => {
+        this.sharedservice.user = data;
+        this.router.navigate(["/profile"]);
+        //this.router.navigate(["/user/" + user._id]);
+      },
+      (error: any) => {
+        this.error_flag = true;
+      }
+    );
   }
 }

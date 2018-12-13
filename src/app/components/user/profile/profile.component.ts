@@ -6,6 +6,7 @@ import { FormsModule } from "@angular/forms";
 import { Http, Response } from "@angular/http";
 import { map } from "rxjs/operators";
 import { User } from "src/app/models/user.model.client";
+import { SharedService } from "src/app/services/shared.service.client";
 
 @Component({
   selector: "app-profile",
@@ -27,16 +28,19 @@ export class ProfileComponent implements OnInit {
   constructor(
     private router: Router,
     private userservice: UserService,
-    private activerouter: ActivatedRoute
+    private activerouter: ActivatedRoute,
+    private sharedservice: SharedService
   ) {}
   //Initilize the form
   ngOnInit() {
-    this.activerouter.params.subscribe(params => {
+    this.user = this.sharedservice.user;
+    this.oldUsername = this.user._id;
+    /*this.activerouter.params.subscribe(params => {
       (this.uid = params["uid"]), console.log(this.uid);
       this.userservice.findUserById(this.uid).subscribe((user: User) => {
         (this.user = user), (this.oldUsername = this.user._id);
       });
-    });
+    });*/
 
     //this.userservice.findUserById()
   }
@@ -61,5 +65,11 @@ export class ProfileComponent implements OnInit {
         }
       );
     }
+  }
+
+  logout() {
+    this.userservice.logout().subscribe((data: any) => {
+      this.router.navigate(["login"]);
+    });
   }
 }

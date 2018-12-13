@@ -98,7 +98,23 @@
         <a routerLink="/user/{{uid}}/website" class="btn btn-primary btn-block "
           >Websites</a
         >
-        <a routerLink="/login" class="btn btn-danger btn-block">Logout</a>
+
+        <button
+          type="button"
+          (click)="logout()"
+          class="btn btn-danger btn-block"
+        >
+          Logout
+        </button>
+
+        <button
+          *ngIf="user.admin"
+          type="button"
+          routerLink="/users"
+          class="btn btn-outline-dark btn-block"
+        >
+          Check Users
+        </button>
       </div>
     </fieldset>
   </form>
@@ -107,7 +123,7 @@
 <footer class="navbar navbar-dark bg-dark fixed-bottom">
   <!-- Navbar content -->
   <div class="full-width">
-    <a class="color-white float-right" routerLink="/user/{{uid}}">
+    <a class="color-white float-right" routerLink="/profile">
       <i class="fas fa-user"></i>
     </a>
   </div>
