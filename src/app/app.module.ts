@@ -29,6 +29,10 @@ import { WidgetImageComponent } from "./components/widget/widget-edit/widget-ima
 import { WidgetYoutubeComponent } from "./components/widget/widget-edit/widget-youtube/widget-youtube.component";
 import { PageService } from "./services/page.service.client";
 import { WidgetService } from "./services/widget.service.client";
+import { SharedService } from "./services/shared.service.client";
+import { AuthGuardSevice } from "./services/auth-guard.service";
+import { UserListComponent } from "./components/user/user-list/user-list.component";
+import { AdminGuardService } from "./services/admin-guard.service";
 
 @NgModule({
   declarations: [
@@ -47,7 +51,8 @@ import { WidgetService } from "./services/widget.service.client";
     WidgetListComponent,
     WidgetHeaderComponent,
     WidgetImageComponent,
-    WidgetYoutubeComponent
+    WidgetYoutubeComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +61,15 @@ import { WidgetService } from "./services/widget.service.client";
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService],
+  providers: [
+    UserService,
+    WebsiteService,
+    PageService,
+    WidgetService,
+    SharedService,
+    AuthGuardSevice,
+    AdminGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -7,7 +7,8 @@ var UserSchema = mongoose.Schema(
     firstName: { type: String, default: "" },
     lastName: { type: String, default: "" },
     email: { type: String, default: "" },
-    dateCreated: { type: String, default: Date() }
+    dateCreated: { type: String, default: Date() },
+    admin: { type: Boolean, default: false }
   },
   { collection: "user" }
 );

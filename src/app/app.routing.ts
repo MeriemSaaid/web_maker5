@@ -15,12 +15,19 @@ import { WidgetEditComponent } from "./components/widget/widget-edit/widget-edit
 import { WidgetHeaderComponent } from "./components/widget/widget-edit/widget-header/widget-header.component";
 import { WidgetImageComponent } from "./components/widget/widget-edit/widget-image/widget-image.component";
 import { WidgetYoutubeComponent } from "./components/widget/widget-edit/widget-youtube/widget-youtube.component";
+import { AuthGuardSevice } from "./services/auth-guard.service";
+import { UserListComponent } from "./components/user/user-list/user-list.component";
+import { AdminGuardService } from "./services/admin-guard.service";
 
 const APP_ROUTES: Routes = [
   { path: "", component: LoginComponent },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "user/:uid", component: ProfileComponent },
+  {
+    path: "profile",
+    component: ProfileComponent,
+    canActivate: [AuthGuardSevice]
+  },
   { path: "user/:uid/website", component: WebsiteListComponent },
   //{ path: "user/:uid/website", component: WebsiteListComponent },
   { path: "user/:uid/website/new", component: WebsiteNewComponent },
@@ -39,6 +46,11 @@ const APP_ROUTES: Routes = [
   {
     path: "user/:uid/website/:wid/page/:pid/widget/:wgid",
     component: WidgetEditComponent
+  },
+  {
+    path: "users",
+    component: UserListComponent,
+    canActivate: [AdminGuardService]
   }
 ];
 //Export the routes as module providers
