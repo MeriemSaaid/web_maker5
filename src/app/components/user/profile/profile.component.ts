@@ -35,6 +35,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.user = this.sharedservice.user;
     this.oldUsername = this.user._id;
+    this.uid = this.user._id;
     /*this.activerouter.params.subscribe(params => {
       (this.uid = params["uid"]), console.log(this.uid);
       this.userservice.findUserById(this.uid).subscribe((user: User) => {
