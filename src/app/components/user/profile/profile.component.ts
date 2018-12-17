@@ -21,7 +21,8 @@ export class ProfileComponent implements OnInit {
     password: "",
     firstName: "",
     lastName: "",
-    email: ""
+    email: "",
+    admin: false
   };
   userError: boolean;
   successFlag: boolean;

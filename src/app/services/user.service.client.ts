@@ -57,6 +57,15 @@ export class UserService {
       })
     );
   }
+  //Function to findall users
+  findAllusers() {
+    const url = this.baseUrl + "/api/users";
+    return this.http.get(url).pipe(
+      map((res: Response) => {
+        return res.json();
+      })
+    );
+  }
   //Function to update a user
   updateUser(user) {
     const url = this.baseUrl + "/api/user";

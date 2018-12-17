@@ -28,6 +28,9 @@ module.exports = function(app) {
   // Register User
   app.post("/api/register", register);
 
+  // Find all Users
+  app.get("/api/users", findAllUsers);
+
   async function register(req, res) {
     var user = req.body;
     user.password = bcrypt.hashSync(user.password);
@@ -66,7 +69,11 @@ module.exports = function(app) {
       return;
     }
   }
-
+  //Find All users
+  async function findAllUsers(req, res) {
+    const data = await UserModel.findAllUsers();
+    res.json(data);
+  }
   //Update User
   async function updateUser(req, res) {
     const user = req.body;

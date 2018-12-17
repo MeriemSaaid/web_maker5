@@ -1,3 +1,42 @@
-<p>
-  user-list works!
-</p>
+<!-- Navbar -->
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" routerLink="/user/{{uid}}"><b>User List</b></a>
+</nav>
+<br /><br />
+<div class="container">
+  <table class="table">
+    <tr>
+      <th scope="col">Username</th>
+      <!-- <th scope="col" colspan="2">Action</th> -->
+    </tr>
+    <tr *ngFor="let userl of users">
+      <td>{{ userl.username }}</td>
+      <!--
+        <td>
+          <a routerLink="/profile" class="float-right" title="Edit">
+            <i class="fas fa-cog"></i>
+          </a>
+        </td>
+        <td>
+          <a routerLink="/profile" class="float-right" title="Delete">
+            <i class="fas fa-trash"></i>
+          </a>
+        </td>
+      -->
+    </tr>
+  </table>
+
+  <div>
+    <button type="button" class="btn btn-primary float-right">Add User</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="navbar navbar-dark bg-dark fixed-bottom">
+  <!-- Navbar content -->
+  <div class="full-width">
+    <a class="color-white float-right" routerLink="/profile">
+      <i class="fas fa-user"></i>
+    </a>
+  </div>
+</footer>

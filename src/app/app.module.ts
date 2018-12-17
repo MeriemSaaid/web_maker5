@@ -33,6 +33,7 @@ import { SharedService } from "./services/shared.service.client";
 import { AuthGuardSevice } from "./services/auth-guard.service";
 import { UserListComponent } from "./components/user/user-list/user-list.component";
 import { AdminGuardService } from "./services/admin-guard.service";
+import { AddUserComponent } from './components/user/add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AdminGuardService } from "./services/admin-guard.service";
     WidgetHeaderComponent,
     WidgetImageComponent,
     WidgetYoutubeComponent,
-    UserListComponent
+    UserListComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
